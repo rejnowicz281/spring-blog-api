@@ -23,16 +23,19 @@ public class PostRepositoryTest {
 
     @Test
     void itShouldFindManyByStatus() {
+        // given
         Post draft1 = new Post("draft1", "body1", Status.DRAFT);
         Post draft2 = new Post("draft2", "body1", Status.DRAFT);
         Post public1 = new Post("public1", "body22", Status.PUBLIC);
         Post public2 = new Post("public2", "body22", Status.PUBLIC);
 
+        // when
         underTest.save(draft1);
         underTest.save(draft2);
         underTest.save(public1);
         underTest.save(public2);
 
+        // then
         List<Post> draftPosts = underTest.findManyByStatus(Status.DRAFT);
         List<Post> publicPosts = underTest.findManyByStatus(Status.PUBLIC);
 
