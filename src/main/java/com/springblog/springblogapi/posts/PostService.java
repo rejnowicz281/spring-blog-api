@@ -1,10 +1,12 @@
 package com.springblog.springblogapi.posts;
 
 import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.springblog.springblogapi.comments.Comment;
 import com.springblog.springblogapi.posts.enums.Status;
 
 import jakarta.transaction.Transactional;
@@ -33,6 +35,12 @@ public class PostService {
         Post post = postRepository.findById(id).orElseThrow();
 
         return post;
+    }
+
+    public Set<Comment> getPostComments(UUID id) {
+        Post post = postRepository.findById(id).orElseThrow();
+
+        return post.getComments();
     }
 
     public void createPost(String title, String body, Status status) {

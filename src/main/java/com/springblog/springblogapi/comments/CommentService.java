@@ -5,12 +5,17 @@ import java.util.UUID;
 
 import org.springframework.stereotype.Service;
 
+import com.springblog.springblogapi.posts.Post;
+import com.springblog.springblogapi.posts.PostRepository;
+
 @Service
 public class CommentService {
     private final CommentRepository commentRepository;
+    private final PostRepository postRepository;
 
-    public CommentService(CommentRepository commentRepository) {
+    public CommentService(CommentRepository commentRepository, PostRepository postrepository) {
         this.commentRepository = commentRepository;
+        this.postRepository = postrepository;
     }
 
     public List<Comment> getComments() {
@@ -23,9 +28,10 @@ public class CommentService {
         return comment;
     }
 
-    public void createComment(String author, String body) {
+    public void createComment(UUID post_id, String author, String body) {
         Comment comment = new Comment(author, body);
-
+        Post post = postRepository.findById(post_id).orElseThrow();
+        comment.setPost(post);
         commentRepository.save(comment);
     }
 

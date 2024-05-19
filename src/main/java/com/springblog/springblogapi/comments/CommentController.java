@@ -31,9 +31,9 @@ public class CommentController {
         return commentService.getComment(id);
     }
 
-    @PostMapping
-    public void createComment(@RequestBody Comment comment) {
-        commentService.createComment(comment.getAuthor(), comment.getBody());
+    @PostMapping(path = "{post_id}")
+    public void createComment(@PathVariable("post_id") UUID post_id, @RequestBody Comment comment) {
+        commentService.createComment(post_id, comment.getAuthor(), comment.getBody());
     }
 
     @PutMapping(path = "{id}")
