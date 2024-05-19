@@ -40,6 +40,7 @@ public class Post {
     @Column(length = 10, nullable = false)
     private Status status;
 
+    @Column(updatable = false)
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;

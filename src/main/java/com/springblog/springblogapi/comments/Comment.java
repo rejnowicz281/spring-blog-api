@@ -36,6 +36,7 @@ public class Comment {
     @Column(length = 10000, nullable = false)
     private String body;
 
+    @Column(updatable = false)
     @CreatedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date createdAt;
