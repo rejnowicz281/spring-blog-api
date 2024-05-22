@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.springblog.springblogapi.comments.Comment;
 
-// using servlet.context-path, api/v1 not needed
-@RequestMapping("posts")
+@RequestMapping("api/v1/posts")
 @RestController
 public class PostController {
     private final PostService postService;
